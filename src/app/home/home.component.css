@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1b1d;
+  border-radius: 10px;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  color: rgb(211, 211, 211);
+  background: none;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1a1b1d;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}
+
+ion-icon {
+  color: rgb(211, 211, 211);
+  background: none;
+  cursor: pointer;
+  margin: 0 auto;
+  font-size: 180%;
+}
+
+.add-button {
+  font-size: 250%;
+}
+
+button {
+  background: none;
+}

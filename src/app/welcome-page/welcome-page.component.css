@@ -1,0 +1,22 @@
+.content {
+  text-align: center;
+  padding: 150px 0;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  background-color: rgb(86, 33, 136);
+  border-radius: 10px;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  background: none;
+  text-shadow: 0 5px 8px rgba(0, 0, 0, 0.8);
+  color: rgb(211, 211, 211);
+}
+
+
+
+

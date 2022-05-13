@@ -26,12 +26,12 @@
       class="dropdown-list"
       [ngClass]="{ show: shouldShow, hide: !shouldShow }"
     >
-      <li *ngFor="let product of productsArray">
-        <div class="product">
-          <h1 class="product-name">Product</h1>
-          <ion-icon class="checkmark" name="checkmark-outline"></ion-icon>
-        </div>
-      </li>
+      <button class="product" *ngFor="let product of productsArray">
+        <h1 class="product-name">
+          Product &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+        </h1>
+        <ion-icon class="checkmark" name="checkmark-outline"></ion-icon>
+      </button>
     </div>
   </li>
 </div>

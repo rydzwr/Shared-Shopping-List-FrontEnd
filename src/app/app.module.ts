@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { IonicModule } from '@ionic/angular';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     BrowserModule,
     AppRoutingModule,
     IonicModule.forRoot(),
-    MatDialogModule
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
+  entryComponents: [AddProductDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

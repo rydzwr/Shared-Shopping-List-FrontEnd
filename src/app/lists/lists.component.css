@@ -57,7 +57,7 @@ ion-icon {
 }
 
 .dropdown-list {
-  position: absolute;
+  position: relative;
   width: 100%;
   padding-top: 0.3vh;
   padding-bottom: 0.3vh;

@@ -22,10 +22,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="dropdown-list"
-      [ngClass]="{ show: shouldShow, hide: !shouldShow }"
-    >
+    <div class="dropdown-list" [ngClass]="{ show: shouldShow, hide: !shouldShow }">
       <button class="product" *ngFor="let product of productsArray">
         <h1 class="product-name">
           Product &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1

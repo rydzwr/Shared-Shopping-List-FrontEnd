@@ -9,22 +9,28 @@ import { IonicModule } from '@ionic/angular';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    WelcomePageComponent,
     ListsComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     IonicModule.forRoot(),
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   entryComponents: [AddProductDialogComponent],
-  providers: [],
+  providers: [ { provide: "SERVER_URL", useValue: "http://localhost:8080" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,7 @@ export class ListsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    for (let index = 0; index < 1; index++) {
+    for (let index = 0; index < 4; index++) {
       this.postsArray.push(this.post);
     }
     for (let index = 0; index < 5; index++) {

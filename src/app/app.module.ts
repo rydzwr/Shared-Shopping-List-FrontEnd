@@ -7,18 +7,21 @@ import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { IonicModule } from '@ionic/angular';
 import {MatDialogModule} from '@angular/material/dialog';
-import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { WelcomePageComponent } from './welcome-components/welcome-page/welcome-page.component';
+import { FormsModule } from '@angular/forms';
+import { ChangeDeviceIdComponent } from './change-device-id/change-device-id.component';
+import { AuthorizationService } from './authorization.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     WelcomePageComponent,
-    ListsComponent
+    ListsComponent,
+    ChangeDeviceIdComponent
   ],
   imports: [
     CommonModule,
@@ -27,10 +30,11 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
     IonicModule.forRoot(),
     MatDialogModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  entryComponents: [AddProductDialogComponent],
-  providers: [ { provide: "SERVER_URL", useValue: "http://localhost:8080" }],
+  entryComponents: [],
+  providers: [ { provide: "SERVER_URL", useValue: "http://localhost:8080" }, AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddProductDialogComponent } from './add-product-dialog.component';
+import { InviteCodeDialogComponent } from './invite-code-dialog.component';
 
-describe('AddProductDialogComponent', () => {
-  let component: AddProductDialogComponent;
-  let fixture: ComponentFixture<AddProductDialogComponent>;
+describe('InviteCodeDialogComponent', () => {
+  let component: InviteCodeDialogComponent;
+  let fixture: ComponentFixture<InviteCodeDialogComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddProductDialogComponent ],
+      declarations: [ InviteCodeDialogComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddProductDialogComponent);
+    fixture = TestBed.createComponent(InviteCodeDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

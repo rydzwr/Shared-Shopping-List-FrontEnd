@@ -1,6 +1,9 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddProductDialogComponent } from '../add-product-dialog/add-product-dialog.component';
+import { Router } from '@angular/router';
+import { AuthorizationService } from '../authorization.service';
+import { InviteCodeDialogComponent } from '../invite-code-dialog/invite-code-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +12,29 @@ import { AddProductDialogComponent } from '../add-product-dialog/add-product-dia
 })
 export class HomeComponent {
 
+  constructor( @Inject('SERVER_URL') private url: String,
+  private http: HttpClient,
+  private _auth: AuthorizationService,
+  private _router: Router,
+  public dialog: MatDialog) { }
 
-  constructor(public dialog: MatDialog) { }
+  public async generateInviteCode() {
+    try {
+      const inviteCode = (await this.http
+        .get<any>(`${this.url}/user/getInviteCode`, {
+          headers: this._auth.authHeader,
+        })
+        .toPromise()).inviteCode;
 
-  openDialog(): void {
-    let dialogRef = this.dialog.open(AddProductDialogComponent, {
-      width: '60%',
-      height: '80%'
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
-    });
+        this.dialog.open(InviteCodeDialogComponent, {
+          width: '50%',
+          data: inviteCode,
+        });
+    } catch (err: any) {
+      if (err instanceof HttpErrorResponse) {
+        console.log(err);
+      }
+    }
   }
 
 }

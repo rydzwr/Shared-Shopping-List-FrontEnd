@@ -1,0 +1,13 @@
+<div class="innerdiv">
+  <input
+    type="text"
+    id="deviceId"
+    name="deviceId"
+    [value]="_auth.deviceId"
+    #deviceId
+  />
+  <button type="button" (click)="_auth.deviceId = deviceId.value">OK</button>
+  <button type="button" (click)="_router.navigate(['../welcome'])">
+    Start
+  </button>
+</div>

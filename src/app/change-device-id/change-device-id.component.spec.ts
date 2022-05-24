@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EnterGroupDialogComponent } from './enter-group-dialog.component';
+import { ChangeDeviceIdComponent } from './change-device-id.component';
 
-describe('EnterGroupDialogComponent', () => {
-  let component: EnterGroupDialogComponent;
-  let fixture: ComponentFixture<EnterGroupDialogComponent>;
+describe('ChangeDeviceIdComponent', () => {
+  let component: ChangeDeviceIdComponent;
+  let fixture: ComponentFixture<ChangeDeviceIdComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnterGroupDialogComponent ],
+      declarations: [ ChangeDeviceIdComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EnterGroupDialogComponent);
+    fixture = TestBed.createComponent(ChangeDeviceIdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

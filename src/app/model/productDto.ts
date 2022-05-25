@@ -1,7 +1,6 @@
 export interface ProductDto{
-  id: number;
+  id?: number;
   name: string;
-  description: string;
-  important: boolean;
-  bought: boolean;
+  important?: boolean;
+  bought?: boolean;
 }

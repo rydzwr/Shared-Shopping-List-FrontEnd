@@ -66,13 +66,8 @@ ion-icon {
   border-top: none;
 }
 
-
-.show {
-  opacity: 1;
-}
-
-.hide {
-  opacity: 0;
+.collapsed {
+  display: none;
 }
 
 .product {
@@ -98,4 +93,33 @@ ion-icon {
   position: absolute;
   right: 0;
   margin-right: 2%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1b1d;
+  border-radius: 10px;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  color: rgb(211, 211, 211);
+  background: none;
+}
+
+.bought{
+  text-decoration: line-through;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1a1b1d;
+  height: 80px;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
 }

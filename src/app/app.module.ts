@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { ListsComponent } from './lists/lists.component';
+import { ProductEditorComponent } from './product-editor/product-editor.component';
 import { IonicModule } from '@ionic/angular';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,14 +13,17 @@ import { WelcomePageComponent } from './welcome-components/welcome-page/welcome-
 import { FormsModule } from '@angular/forms';
 import { ChangeDeviceIdComponent } from './change-device-id/change-device-id.component';
 import { AuthorizationService } from './authorization.service';
+import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
+import { InviteCodeDialogComponent } from './invite-code-dialog/invite-code-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     WelcomePageComponent,
-    ListsComponent,
-    ChangeDeviceIdComponent
+    ProductEditorComponent,
+    ChangeDeviceIdComponent,
+    AddProductDialogComponent,
+    InviteCodeDialogComponent
   ],
   imports: [
     CommonModule,

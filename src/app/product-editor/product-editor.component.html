@@ -1,0 +1,54 @@
+<div class="content">
+  <div class="header">
+    <h1>{{ (productTree | async)!.houseName }}</h1>
+  </div>
+  <li *ngFor="let user of (productTree | async)!.productsByUser | keyvalue">
+    <div class="list-header">
+      <h1 class="name">
+        {{ user.key }}
+      </h1>
+      <div class="x">
+        <div>
+          <button>
+            <ion-icon class="cross" name="close-outline"></ion-icon>
+          </button>
+        </div>
+        <div class="dropdown">
+          <button (click)="toggleUserPanel(panel)">
+            <ion-icon
+              class="dropdown-button"
+              name="caret-down-outline"
+            ></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown-list" #panel>
+      <button
+        class="product"
+        *ngFor="let product of toArray(user.value)"
+        (click)="toggleBought(product)"
+      >
+        <h1 class="product-name" [ngClass]="{ bought: product.bought }">
+          {{ product.name }}
+        </h1>
+        <ion-icon
+          class="checkmark"
+          name="checkmark-outline"
+          *ngIf="product.bought"
+        ></ion-icon>
+      </button>
+    </div>
+  </li>
+</div>
+<div class="footer">
+  <button (click)="generateInviteCode()">
+    <ion-icon name="person-add-outline"></ion-icon>
+  </button>
+
+  <button (click)="addProductClicked()">
+    <ion-icon class="add-button" name="add-outline"> </ion-icon>
+  </button>
+
+  <ion-icon name="trash-bin-outline"></ion-icon>
+</div>

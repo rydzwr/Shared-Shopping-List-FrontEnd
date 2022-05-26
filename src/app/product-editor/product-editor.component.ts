@@ -29,7 +29,7 @@ export class ProductEditorComponent implements OnInit {
     private _auth: AuthorizationService,
     @Inject('SERVER_URL') private url: String
   ) {
-    this.dataSource = new ProductDataSource(_productService);
+    this.dataSource = new ProductDataSource(_productService, _auth);
     this.productTree = this.dataSource.connect();
   }
 
@@ -45,6 +45,10 @@ export class ProductEditorComponent implements OnInit {
 
   public toArray(json: unknown): ProductDto[] {
     return json as ProductDto[];
+  }
+
+  public countProducts(array: unknown) {
+    return (array as ProductDto[]).length;
   }
 
   public toggleBought(product: ProductDto) {
@@ -80,9 +84,10 @@ export class ProductEditorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((productName) => {
+      console.log(productName);
       this._productService
         .addProduct(productName)
-        .subscribe((newProduct) => this.fetchProductsList());
+        .subscribe((newProduct) => this.dataSource.addProductOffline(newProduct));
     });
   }
 

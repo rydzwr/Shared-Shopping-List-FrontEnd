@@ -8,9 +8,14 @@ import { AuthorizationService } from '../authorization.service';
   styleUrls: ['./change-device-id.component.css'],
 })
 export class ChangeDeviceIdComponent implements OnInit {
-
-  constructor(public _auth: AuthorizationService, public _router: Router) { }
+  constructor(public _auth: AuthorizationService, public _router: Router) {
+    this.login('TestDevice123');
+  }
 
   ngOnInit() {}
 
+  public login(deviceId: string) {
+    this._auth.deviceId = deviceId;
+    this._auth.login();
+  }
 }

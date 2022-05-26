@@ -31,6 +31,7 @@ export class ProductService {
 
   public addProduct(productName: string): Observable<ProductDto> {
     const productDto: ProductDto = { name: productName };
+    console.log(productDto);
     return this.http
       .post<ProductDto>(`${this.url}/product/add/`, productDto, {
         headers: this._auth.authHeader,

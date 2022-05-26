@@ -6,7 +6,7 @@
     [value]="_auth.deviceId"
     #deviceId
   />
-  <button type="button" (click)="_auth.deviceId = deviceId.value">OK</button>
+  <button type="button" (click)="login(deviceId.value)">OK</button>
   <button type="button" (click)="_router.navigate(['../welcome'])">
     Start
   </button>

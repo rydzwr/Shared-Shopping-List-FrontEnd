@@ -1,9 +1,9 @@
 import { CollectionViewer } from '@angular/cdk/collections';
 import { BehaviorSubject, Observable, catchError, of, finalize } from 'rxjs';
-import { AuthorizationService } from '../authorization.service';
+import { AuthorizationService } from '../Services/authorization.service';
 import { ProductTree } from '../model/product-tree';
 import { ProductDto } from '../model/productDto';
-import { ProductService } from '../product.service';
+import { ProductService } from '../Services/product.service';
 
 export class ProductDataSource {
   private _productsSubject = new BehaviorSubject<ProductTree>({

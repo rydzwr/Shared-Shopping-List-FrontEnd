@@ -1,11 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { h } from 'ionicons/dist/types/stencil-public-runtime';
-import { HouseService } from 'src/app/house.service';
-import { AuthorizationService } from '../../authorization.service';
-import { HouseDto } from '../../model/houseDto';
-import { UserDto } from '../../model/userDto';
+import { HouseService } from 'src/app/Services/house.service';
+import { AuthorizationService } from '../Services/authorization.service';
 
 @Component({
   selector: 'app-welcome-page',

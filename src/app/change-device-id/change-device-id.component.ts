@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthorizationService } from '../authorization.service';
+import { AuthorizationService } from '../Services/authorization.service';
 
 @Component({
   selector: 'app-change-device-id',

@@ -1,20 +1,22 @@
+<div class="header">
+  <h1>{{ (productTree | async)!.houseName }}</h1>
+</div>
 <div class="content">
-  <div class="header">
-    <h1>{{ (productTree | async)!.houseName }}</h1>
-  </div>
-  <li *ngFor="let user of (productTree | async)!.productsByUser | keyvalue">
+  <div *ngFor="let user of (productTree | async)!.productsByUser | keyvalue">
     <div class="list-header">
-      <h1 class="name">
-        {{ user.key }}
-      </h1>
-      <h1>{{ countProducts(user.value) }}</h1>
-      <div class="x">
+      <div class="user-data">
+        <h1 class="user-name">
+          {{ user.key }}
+        </h1>
+        <h1 class="products-count">{{ countProducts(user.value) }}</h1>
+      </div>
+      <div class="user-products-list">
         <div>
           <button>
             <ion-icon class="cross" name="close-outline"></ion-icon>
           </button>
         </div>
-        <div class="dropdown">
+        <div class="after-dropdown">
           <button (click)="toggleUserPanel(panel)">
             <ion-icon
               class="dropdown-button"
@@ -40,16 +42,18 @@
         ></ion-icon>
       </button>
     </div>
-  </li>
+  </div>
 </div>
 <div class="footer">
-  <button (click)="generateInviteCode()">
-    <ion-icon name="person-add-outline"></ion-icon>
-  </button>
-
-  <button (click)="addProductClicked()">
-    <ion-icon class="add-button" name="add-outline"> </ion-icon>
-  </button>
-
-  <ion-icon name="trash-bin-outline"></ion-icon>
+  <div class="footer-buttons">
+    <button class="footer-icon" (click)="generateInviteCode()">
+      <ion-icon name="person-add-outline"></ion-icon>
+    </button>
+    <button class="footer-icon" (click)="addProductClicked()">
+      <ion-icon name="add-outline"> </ion-icon>
+    </button>
+    <button class="footer-icon">
+      <ion-icon name="trash-bin-outline"></ion-icon>
+    </button>
+  </div>
 </div>

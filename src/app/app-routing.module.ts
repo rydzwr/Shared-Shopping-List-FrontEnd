@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductEditorComponent } from './product-editor/product-editor.component';
-import { WelcomePageComponent } from './welcome-components/welcome-page/welcome-page.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },

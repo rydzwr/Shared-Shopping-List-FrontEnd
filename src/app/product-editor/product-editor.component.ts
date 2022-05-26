@@ -1,15 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable } from 'rxjs';
-import { AuthorizationService } from '../authorization.service';
+import { AuthorizationService } from '../Services/authorization.service';
 import { ProductTree } from '../model/product-tree';
 import { ProductDto } from '../model/productDto';
-import { ProductService } from '../product.service';
+import { ProductService } from '../Services/product.service';
 import { ProductDataSource } from './product-data-source';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { InviteCodeDialogComponent } from '../invite-code-dialog/invite-code-dialog.component';
-import { AddProductDialogComponent } from '../add-product-dialog/add-product-dialog.component';
+import { InviteCodeDialogComponent } from '../dialogs/invite-code-dialog/invite-code-dialog.component';
+import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
 
 @Component({
   selector: 'app-product-editor',
@@ -80,7 +80,8 @@ export class ProductEditorComponent implements OnInit {
 
   public addProductClicked() {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
-      width: '50%',
+      width: '80%',
+      height: '80%'
     });
 
     dialogRef.afterClosed().subscribe((productName) => {

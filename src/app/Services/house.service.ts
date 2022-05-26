@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorizationService } from './authorization.service';
-import { HouseDto } from './model/houseDto';
+import { HouseDto } from '../model/houseDto';
 
 @Injectable({
   providedIn: 'root',

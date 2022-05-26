@@ -1,3 +1,31 @@
+/*-------------------GLOBAL STYLES-------------------*/
+
+h1 {
+  color: rgb(211, 211, 211);
+  background: none;
+}
+
+ ion-icon {
+  color: rgb(211, 211, 211);
+  background: none;
+  cursor: pointer;
+  margin: 0 auto;
+  font-size: 180%;
+}
+
+/*-------------------HEADER-------------------*/
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1b1d;
+  border-radius: 10px;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+}
+
+/*-------------------SITE CONTENT-------------------*/
+
 .content {
   margin: 0 auto;
   width: 98vw;
@@ -12,10 +40,7 @@
   width: 0;
 }
 
-li {
-  list-style: none;
-  position: relative;
-}
+/*-------------------USER LIST HEADER-------------------*/
 
 .list-header {
   display: flex;
@@ -28,7 +53,14 @@ li {
   border-bottom: none;
 }
 
-.name {
+.user-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 2%;
+}
+
+.user-name {
   margin: 0 auto;
   margin-left: 2%;
   color: rgb(211, 211, 211);
@@ -36,7 +68,15 @@ li {
   font-size: 1.5rem;
 }
 
-.x {
+.products-count {
+  margin: 0 auto;
+  margin-left: 30px;
+  font-size: 1.5rem;
+}
+
+/*-------------------USER'S PRODUCTS LIST-------------------*/
+
+.user-products-list {
   margin: 0 auto;
   margin-right: 2%;
   width: 80px;
@@ -44,15 +84,7 @@ li {
   justify-content: space-between;
 }
 
-ion-icon {
-  color: rgb(211, 211, 211);
-  background: none;
-  cursor: pointer;
-  margin: 0 auto;
-  font-size: 180%;
-}
-
-.dropdown {
+.after-dropdown {
   position: relative;
 }
 
@@ -95,31 +127,35 @@ ion-icon {
   margin-right: 2%;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1a1b1d;
-  border-radius: 10px;
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-}
-
-h1 {
-  color: rgb(211, 211, 211);
-  background: none;
-}
-
 .bought{
   text-decoration: line-through;
 }
 
+/*-------------------FOOTER-------------------*/
+
 .footer {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
   background-color: #1a1b1d;
   height: 80px;
   position: absolute;
   bottom: 0;
   width: 100vw;
+}
+
+.footer-buttons {
+  position: relative;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+}
+
+.footer-icon {
+  color: rgb(211, 211, 211);
+  background-color: #1a1b1d;
+  cursor: pointer;
+  font-size: 20px;
 }

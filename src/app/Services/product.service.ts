@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorizationService } from './authorization.service';
-import { ProductTree } from './model/product-tree';
-import { ProductDto } from './model/productDto';
+import { ProductTree } from '../model/product-tree';
+import { ProductDto } from '../model/productDto';
 
 @Injectable({
   providedIn: 'root',

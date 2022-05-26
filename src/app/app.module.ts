@@ -9,12 +9,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { WelcomePageComponent } from './welcome-components/welcome-page/welcome-page.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FormsModule } from '@angular/forms';
 import { ChangeDeviceIdComponent } from './change-device-id/change-device-id.component';
-import { AuthorizationService } from './authorization.service';
-import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
-import { InviteCodeDialogComponent } from './invite-code-dialog/invite-code-dialog.component';
+import { AuthorizationService } from './Services/authorization.service';
+import { AddProductDialogComponent } from './dialogs/add-product-dialog/add-product-dialog.component';
+import { InviteCodeDialogComponent } from './dialogs/invite-code-dialog/invite-code-dialog.component';
 
 @NgModule({
   declarations: [

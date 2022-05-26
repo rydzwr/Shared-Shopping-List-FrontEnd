@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { UserDto } from './model/userDto';
+import { UserDto } from '../model/userDto';
 
 @Injectable()
 export class AuthorizationService {

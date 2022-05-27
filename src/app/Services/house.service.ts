@@ -44,4 +44,14 @@ export class HouseService {
       }
     );
   }
+
+  public clearUserProducts(): Observable<void> {
+    return this.http.post<void>(
+      `${this.url}/user/removeWhereBoughtTrue/`,
+      undefined,
+      {
+        headers: this._auth.authHeader,
+      }
+    );
+  }
 }

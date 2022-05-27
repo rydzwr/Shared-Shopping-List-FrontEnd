@@ -101,6 +101,10 @@ export class ProductEditorComponent implements OnInit {
     this._houseService.clearHouse().subscribe(() => this.fetchProductsList());
   }
 
+  removeUserBoughtProductsClicked() {
+    this._houseService.clearUserProducts().subscribe(() => this.fetchProductsList());
+  }
+
   public fetchProductsList() {
     this.dataSource.loadProducts();
   }

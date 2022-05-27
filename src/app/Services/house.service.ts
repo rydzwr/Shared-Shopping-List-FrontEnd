@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorizationService } from './authorization.service';
 import { HouseDto } from '../model/houseDto';
+import { ProductService } from '../Services/product.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import { HouseDto } from '../model/houseDto';
 export class HouseService {
   constructor(
     @Inject('SERVER_URL') private url: String,
+    private _productService: ProductService,
     private http: HttpClient,
     private _auth: AuthorizationService
   ) {}
@@ -25,6 +27,17 @@ export class HouseService {
   public joinHouse(inviteCode: string): Observable<void> {
     return this.http.post<void>(
       `${this.url}/house/join/${inviteCode}`,
+      undefined,
+      {
+        headers: this._auth.authHeader,
+      }
+    );
+  }
+
+  public clearHouse(): Observable<void> {
+    console.log("clear-run");
+    return this.http.patch<void>(
+      `${this.url}/house/clear/`,
       undefined,
       {
         headers: this._auth.authHeader,

@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { InviteCodeDialogComponent } from '../dialogs/invite-code-dialog/invite-code-dialog.component';
 import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
+import { HouseService } from '../Services/house.service';
 
 @Component({
   selector: 'app-product-editor',
@@ -23,6 +24,7 @@ export class ProductEditorComponent implements OnInit {
 
   public constructor(
     private _productService: ProductService,
+    private _houseService: HouseService,
     private _router: Router,
     public dialog: MatDialog,
     private http: HttpClient,
@@ -68,7 +70,8 @@ export class ProductEditorComponent implements OnInit {
       ).inviteCode;
 
       this.dialog.open(InviteCodeDialogComponent, {
-        width: '50%',
+        width: '80%',
+        height: '80%',
         data: inviteCode,
       });
     } catch (err: any) {
@@ -81,15 +84,21 @@ export class ProductEditorComponent implements OnInit {
   public addProductClicked() {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
       width: '80%',
-      height: '80%'
+      height: '80%',
     });
 
     dialogRef.afterClosed().subscribe((productName) => {
       console.log(productName);
       this._productService
         .addProduct(productName)
-        .subscribe((newProduct) => this.dataSource.addProductOffline(newProduct));
+        .subscribe((newProduct) =>
+          this.dataSource.addProductOffline(newProduct)
+        );
     });
+  }
+
+  clearHouseClicked() {
+    this._houseService.clearHouse().subscribe(() => this.fetchProductsList());
   }
 
   public fetchProductsList() {

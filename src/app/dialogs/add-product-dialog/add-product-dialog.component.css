@@ -8,6 +8,12 @@
   background-color: #1a1b1d;
 }
 
+h1 {
+  background: none;
+  text-shadow: 0 5px 8px rgba(0, 0, 0, 0.8);
+  color: rgb(211, 211, 211);
+}
+
 .input {
   border: solid #ffffff 1px;
   width: 80%;

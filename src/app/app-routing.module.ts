@@ -6,7 +6,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: ProductEditorComponent },
-  {path: "welcome", component: WelcomePageComponent}
+  { path: "welcome", component: WelcomePageComponent }
 ];
 
 @NgModule({

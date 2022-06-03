@@ -11,6 +11,7 @@ import { AuthorizationService } from '../Services/authorization.service';
 })
 export class WelcomePageComponent implements OnInit {
   public status = '';
+  public wrongCodeStatus = '';
 
   constructor(
     @Inject('SERVER_URL') private url: String,
@@ -22,13 +23,26 @@ export class WelcomePageComponent implements OnInit {
 
   public async ngOnInit() {
     const loggedIn = await this._auth.login();
+    console.log(loggedIn);
     if (!loggedIn) this.status = 'newUser';
     else if (this._auth.houseId === null) this.status = 'selectAction';
     else this._router.navigate(['../home']);
   }
 
+  public backClicked() {
+    this.status = 'newUser';
+  }
+
   public async newUserClicked(username: string) {
     if (await this._auth.createUser(username)) this.status = 'selectAction';
+    else {
+      await this._auth.updateUser(username);
+      this.status = 'selectAction';
+    }
+  }
+
+  public backToSelectActionClicked() {
+    this.status = 'selectAction';
   }
 
   public newHouseClicked(housename: string) {
@@ -38,9 +52,14 @@ export class WelcomePageComponent implements OnInit {
   }
 
   public async joinClicked(inviteCode: string) {
-    if (inviteCode.length !== 4) return;
-    this._houseService
-      .joinHouse(inviteCode)
-      .subscribe(() => this._router.navigate(['../home']));
+    if ((await this._houseService.joinHouse(inviteCode)) === true) {
+      this._router.navigate(['../home']);
+    }
+    else if (inviteCode.length !== 4) {
+      this.wrongCodeStatus = 'wrongCode';
+      return;
+    } else {
+      this.wrongCodeStatus = 'wrongCode';
+    }
   }
 }

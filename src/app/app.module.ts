@@ -36,7 +36,7 @@ import { InviteCodeDialogComponent } from './dialogs/invite-code-dialog/invite-c
     FormsModule
   ],
   entryComponents: [],
-  providers: [ { provide: "SERVER_URL", useValue: "http://localhost:8080" }, AuthorizationService],
+  providers: [ { provide: "SERVER_URL", useValue: "http://192.168.1.21:8080" }, AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

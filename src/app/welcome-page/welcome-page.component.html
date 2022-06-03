@@ -1,34 +1,34 @@
 <div class="content">
-  <div *ngIf="status === 'newUser'">
+  <div class="content" *ngIf="status === 'newUser'">
     <h1>Enter Name:</h1>
     <input type="text" id="username" name="username" #username />
-    <button
-      type="button"
-      (click)="newUserClicked(username.value)"
-    >
+    <button type="button" (click)="newUserClicked(username.value)">
       Continue
     </button>
   </div>
 
-  <div *ngIf="status === 'selectAction'">
-    <div>
-      <h1>Join Existing Household</h1>
-      <button (click)="status = 'joinHouse'">Join</button>
-    </div>
+  <div class="content" *ngIf="status === 'selectAction'">
+    <h1>Join Existing Household</h1>
+    <button (click)="status = 'joinHouse'">Join</button>
     <h1>Create New Household</h1>
     <button (click)="status = 'createHouseChoose'">Create</button>
+    <button class="back-button" (click)="backClicked()">BACK</button>
   </div>
 
-  <div *ngIf="status === 'createHouseChoose'">
+  <div class="content" *ngIf="status === 'createHouseChoose'">
     <h1>Create New Household</h1>
     <h1>Enter Name:</h1>
     <input type="text" id="housename" name="housename" #housename />
     <button (click)="newHouseClicked(housename.value)">OK</button>
+    <button class="back-button" (click)="backToSelectActionClicked()">BACK</button>
   </div>
 
-  <div *ngIf="status === 'joinHouse'">
+  <div class="content" *ngIf="status === 'joinHouse'">
     <h1>Enter Invite Code:</h1>
     <input type="text" id="invite" name="invite" #invite />
     <button type="button" (click)="joinClicked(invite.value)">Continue</button>
+    <button class="back-button" (click)="backToSelectActionClicked()">BACK</button>
+
+    <p *ngIf="wrongCodeStatus === 'wrongCode'">Code must be valid and 4 digit long</p>
   </div>
 </div>

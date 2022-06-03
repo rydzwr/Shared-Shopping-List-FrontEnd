@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthorizationService } from './authorization.service';
@@ -24,25 +24,27 @@ export class HouseService {
     });
   }
 
-  public joinHouse(inviteCode: string): Observable<void> {
-    return this.http.post<void>(
-      `${this.url}/house/join/${inviteCode}`,
-      undefined,
-      {
-        headers: this._auth.authHeader,
+  public async joinHouse(inviteCode: string): Promise<boolean | undefined> {
+    try {
+      return await this.http
+        .post<boolean>(`${this.url}/house/join/${inviteCode}`, undefined, {
+          headers: this._auth.authHeader,
+        })
+        .toPromise();
+    } catch (err: any) {
+      if (err instanceof HttpErrorResponse) {
+        console.log(err);
       }
-    );
+
+      return false;
+    }
   }
 
   public clearHouse(): Observable<void> {
-    console.log("clear-run");
-    return this.http.patch<void>(
-      `${this.url}/house/clear/`,
-      undefined,
-      {
-        headers: this._auth.authHeader,
-      }
-    );
+    console.log('clear-run');
+    return this.http.patch<void>(`${this.url}/house/clear/`, undefined, {
+      headers: this._auth.authHeader,
+    });
   }
 
   public clearUserProducts(): Observable<void> {

@@ -91,4 +91,29 @@ export class AuthorizationService {
       return false;
     }
   }
+
+  public async updateUser(username: string): Promise<boolean> {
+    let user: UserDto | undefined = { name: username };
+
+    try {
+      user = await this.http
+        .post<UserDto>(`${this.url}/user/updateUser`, user, {
+          headers: this.authHeader,
+        })
+        .toPromise();
+
+      if (user !== undefined) {
+        this._username = user.name ? user.name : null;
+        this._houseId = user.houseId ? user.houseId : null;
+      }
+
+      return true;
+    } catch (err: any) {
+      if (err instanceof HttpErrorResponse) {
+        console.log(err);
+      }
+
+      return false;
+    }
+  }
 }

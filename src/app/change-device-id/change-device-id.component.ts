@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthorizationService } from '../Services/authorization.service';
 
@@ -8,7 +8,11 @@ import { AuthorizationService } from '../Services/authorization.service';
   styleUrls: ['./change-device-id.component.css'],
 })
 export class ChangeDeviceIdComponent implements OnInit {
-  constructor(public _auth: AuthorizationService, public _router: Router) {
+  constructor(
+    public _auth: AuthorizationService,
+    public _router: Router,
+    @Inject('SERVER_URL') public url: String
+  ) {
     this.login('TestDevice123');
   }
 

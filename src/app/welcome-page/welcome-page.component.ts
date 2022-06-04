@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HouseService } from 'src/app/Services/house.service';
 import { AuthorizationService } from '../Services/authorization.service';
+import { ServerService } from '../Services/server.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -12,16 +13,20 @@ import { AuthorizationService } from '../Services/authorization.service';
 export class WelcomePageComponent implements OnInit {
   public status = '';
   public wrongCodeStatus = '';
+  public answer = '';
 
   constructor(
     @Inject('SERVER_URL') private url: String,
     private http: HttpClient,
     private _auth: AuthorizationService,
     private _router: Router,
-    private _houseService: HouseService
+    private _houseService: HouseService,
+    private _serverService: ServerService
   ) {}
 
   public async ngOnInit() {
+    const response = await this._serverService.checkConnection();
+    if (response) this.answer = 'true';
     const loggedIn = await this._auth.login();
     console.log(loggedIn);
     if (!loggedIn) this.status = 'newUser';

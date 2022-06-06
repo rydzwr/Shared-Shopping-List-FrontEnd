@@ -24,6 +24,14 @@ h1 {
   box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
 }
 
+.settings-button {
+  position: absolute;
+  right: 2%;
+  background: none;
+  font-size: 100%;
+  margin: 0 auto;
+}
+
 /*-------------------SITE CONTENT-------------------*/
 
 .content {

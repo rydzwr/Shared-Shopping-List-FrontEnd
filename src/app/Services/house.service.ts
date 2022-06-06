@@ -24,6 +24,24 @@ export class HouseService {
     });
   }
 
+  public async updateHouse(houseName: string): Promise<boolean | undefined> {
+    let house: HouseDto | undefined = { name: houseName };
+    try {
+      return await this.http
+        .post<boolean>(`${this.url}/house/update`, house, {
+          headers: this._auth.authHeader,
+        })
+        .toPromise();
+
+    } catch (err: any) {
+      if (err instanceof HttpErrorResponse) {
+        console.log(err);
+      }
+
+      return false;
+    }
+  }
+
   public async joinHouse(inviteCode: string): Promise<boolean | undefined> {
     try {
       return await this.http
@@ -41,7 +59,6 @@ export class HouseService {
   }
 
   public clearHouse(): Observable<void> {
-    console.log('clear-run');
     return this.http.patch<void>(`${this.url}/house/clear/`, undefined, {
       headers: this._auth.authHeader,
     });
@@ -55,5 +72,21 @@ export class HouseService {
         headers: this._auth.authHeader,
       }
     );
+  }
+
+  public async removeUser(): Promise<boolean | undefined> {
+    try{
+      return await this.http.patch<boolean>(`${this.url}/house/removeUser/`, undefined, {
+        headers: this._auth.authHeader,
+      }).toPromise();
+
+    }catch (err: any) {
+      if (err instanceof HttpErrorResponse) {
+        console.log(err);
+      }
+
+      return false;
+    }
+
   }
 }

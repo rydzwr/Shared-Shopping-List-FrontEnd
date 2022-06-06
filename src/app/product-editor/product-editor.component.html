@@ -1,5 +1,6 @@
 <div class="header">
   <h1>{{ (productTree | async)!.houseName }}</h1>
+  <button class="settings-button" (click)="settingsClicked()"><ion-icon name="settings-outline"></ion-icon></button>
 </div>
 <div class="content">
   <div *ngFor="let user of (productTree | async)!.productsByUser | keyvalue">

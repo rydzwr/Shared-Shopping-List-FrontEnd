@@ -15,6 +15,7 @@ import { ChangeDeviceIdComponent } from './change-device-id/change-device-id.com
 import { AuthorizationService } from './Services/authorization.service';
 import { AddProductDialogComponent } from './dialogs/add-product-dialog/add-product-dialog.component';
 import { InviteCodeDialogComponent } from './dialogs/invite-code-dialog/invite-code-dialog.component';
+import { SettingsDialogComponent } from './dialogs/settings-dialog/settings-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InviteCodeDialogComponent } from './dialogs/invite-code-dialog/invite-c
     ProductEditorComponent,
     ChangeDeviceIdComponent,
     AddProductDialogComponent,
-    InviteCodeDialogComponent
+    InviteCodeDialogComponent,
+    SettingsDialogComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,7 @@ import { InviteCodeDialogComponent } from './dialogs/invite-code-dialog/invite-c
     FormsModule
   ],
   entryComponents: [],
-  providers: [ { provide: "SERVER_URL", useValue: "http://192.168.43.123:8080" }, AuthorizationService],
+  providers: [ { provide: 'SERVER_URL', useValue: 'http://localhost:8080' }, AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

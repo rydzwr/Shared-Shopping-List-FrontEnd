@@ -11,6 +11,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { InviteCodeDialogComponent } from '../dialogs/invite-code-dialog/invite-code-dialog.component';
 import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
 import { HouseService } from '../Services/house.service';
+import { SettingsDialogComponent } from '../dialogs/settings-dialog/settings-dialog.component';
 
 @Component({
   selector: 'app-product-editor',
@@ -81,6 +82,13 @@ export class ProductEditorComponent implements OnInit {
     }
   }
 
+  public settingsClicked() {
+    const dialogRef = this.dialog.open(SettingsDialogComponent, {
+      width: '80%',
+      height: '80%',
+    });
+  }
+
   public addProductClicked() {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
       width: '80%',
@@ -88,12 +96,12 @@ export class ProductEditorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((productName) => {
-      console.log(productName);
       this._productService
         .addProduct(productName)
         .subscribe((newProduct) =>
           this.dataSource.addProductOffline(newProduct)
         );
+        this.reloadCurrentPage();
     });
   }
 
@@ -108,4 +116,8 @@ export class ProductEditorComponent implements OnInit {
   public fetchProductsList() {
     this.dataSource.loadProducts();
   }
+
+  reloadCurrentPage() {
+    window.location.reload();
+   }
 }

@@ -13,7 +13,6 @@ export class AuthorizationService {
     @Inject('SERVER_URL') private url: String
   ) {
     //Get proper device ID
-    console.log('Created auth service');
   }
 
   private _deviceId = 'TestDevice123';
@@ -38,7 +37,6 @@ export class AuthorizationService {
   }
 
   public get authHeader(): HttpHeaders {
-    console.log('get header ' + this._deviceId);
     return new HttpHeaders({
       Authorization: `Basic ${btoa(this._deviceId)}`,
     });
@@ -52,12 +50,9 @@ export class AuthorizationService {
         })
         .toPromise();
 
-      if (user !== undefined) {
-        this._username = user.name ? user.name : null;
-        this._houseId = user.houseId ? user.houseId : null;
-      }
-
-      return true;
+      if (user?.name === 'null') {
+        return false;
+      } else return true;
     } catch (err: any) {
       if (err instanceof HttpErrorResponse) {
         console.log(err);
@@ -92,22 +87,15 @@ export class AuthorizationService {
     }
   }
 
-  public async updateUser(username: string): Promise<boolean> {
-    let user: UserDto | undefined = { name: username };
-
+  public async updateUser(userName: string): Promise<boolean | undefined> {
+    let user: UserDto | undefined = { name: userName };
     try {
-      user = await this.http
-        .post<UserDto>(`${this.url}/user/updateUser`, user, {
+      return await this.http
+        .post<boolean>(`${this.url}/user/updateUser`, user, {
           headers: this.authHeader,
         })
         .toPromise();
 
-      if (user !== undefined) {
-        this._username = user.name ? user.name : null;
-        this._houseId = user.houseId ? user.houseId : null;
-      }
-
-      return true;
     } catch (err: any) {
       if (err instanceof HttpErrorResponse) {
         console.log(err);

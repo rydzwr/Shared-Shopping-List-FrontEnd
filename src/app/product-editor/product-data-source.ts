@@ -55,7 +55,6 @@ export class ProductDataSource {
 
     if (username && username in tree.productsByUser) {
       (tree.productsByUser[username] as ProductDto[]).unshift(product);
-      console.log(tree);
       this._productsSubject.next(tree);
     }
   }

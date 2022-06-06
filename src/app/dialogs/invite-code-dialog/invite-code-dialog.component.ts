@@ -13,5 +13,7 @@ export class InviteCodeDialogComponent {
     @Inject(MAT_DIALOG_DATA) public inviteCode: string,
   ) {}
 
-
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

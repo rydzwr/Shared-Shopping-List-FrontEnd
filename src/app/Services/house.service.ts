@@ -74,19 +74,9 @@ export class HouseService {
     );
   }
 
-  public async removeUser(): Promise<boolean | undefined> {
-    try{
-      return await this.http.patch<boolean>(`${this.url}/house/removeUser/`, undefined, {
+  public removeUser(): Observable<void> {
+      return this.http.patch<void>(`${this.url}/house/removeUser/`, undefined, {
         headers: this._auth.authHeader,
-      }).toPromise();
-
-    }catch (err: any) {
-      if (err instanceof HttpErrorResponse) {
-        console.log(err);
-      }
-
-      return false;
-    }
-
+      });
   }
 }

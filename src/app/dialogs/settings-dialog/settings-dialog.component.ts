@@ -26,31 +26,24 @@ export class SettingsDialogComponent implements OnInit {
 
   public confirmClicked(username: string) {
     if (username !== '' && username !== undefined && username !== null) {
-      this._auth.updateUser(username);
-      this.dialogRef.close();
-      this.reloadComponent();
+      this._auth.renameUser(username);
+      this.dialogRef.close(true);
     } else return;
-  }
-
-  reloadComponent() {
-    let currentUrl = this._router.url;
-    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this._router.onSameUrlNavigation = 'reload';
-    this._router.navigate([currentUrl]);
   }
 
   public confirmHouseClicked(houseName: string) {
     if (houseName !== '' && houseName !== undefined && houseName !== null) {
       this._houseService.updateHouse(houseName);
-      this.dialogRef.close();
-      this.reloadComponent();
+      this.dialogRef.close(true);
     } else return;
   }
 
   public async leaveHouseConfirmed() {
-    this._houseService.removeUser();
-    this.dialogRef.close();
-    this._router.navigate(["welcome"]);
+    this._houseService.removeUser().subscribe(() => {
+        this._auth.login();
+        this.dialogRef.close(false);
+        this._router.navigate(['../welcome']);
+    });
   }
 
   public leaveHouseClicked() {

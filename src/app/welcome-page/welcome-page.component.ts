@@ -25,6 +25,7 @@ export class WelcomePageComponent implements OnInit {
 
   public async ngOnInit() {
     const loggedIn = await this._auth.login();
+    console.log("Welcome houseid: " + this._auth.houseId);
     if (!loggedIn) this.status = 'newUser';
     else if (this._auth.houseId === null) this.status = 'selectAction';
     else this._router.navigate(['../home']);
@@ -35,13 +36,9 @@ export class WelcomePageComponent implements OnInit {
   }
 
   public async newUserClicked(username: string) {
-    if (username !== '' && username !== null && username !== undefined) {
+    if (username.trim() !== "") {
       if (await this._auth.createUser(username)) this.status = 'selectAction';
-      else {
-        await this._auth.updateUser(username);
-        this.status = 'selectAction';
-      }
-    } else return;
+    }
   }
 
   public backToSelectActionClicked() {

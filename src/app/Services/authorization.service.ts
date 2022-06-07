@@ -50,9 +50,11 @@ export class AuthorizationService {
         })
         .toPromise();
 
-      if (user?.name === 'null') {
-        return false;
-      } else return true;
+      if (user !== undefined) {
+        this._username = user.name ? user.name : null;
+        this._houseId = user.houseId ? user.houseId : null;
+        return true;
+      } else return false;
     } catch (err: any) {
       if (err instanceof HttpErrorResponse) {
         console.log(err);
@@ -75,9 +77,8 @@ export class AuthorizationService {
       if (user !== undefined) {
         this._username = user.name ? user.name : null;
         this._houseId = user.houseId ? user.houseId : null;
-      }
-
-      return true;
+        return true;
+      } else return false;
     } catch (err: any) {
       if (err instanceof HttpErrorResponse) {
         console.log(err);
@@ -87,15 +88,20 @@ export class AuthorizationService {
     }
   }
 
-  public async updateUser(userName: string): Promise<boolean | undefined> {
+  public async renameUser(userName: string): Promise<boolean> {
     let user: UserDto | undefined = { name: userName };
     try {
-      return await this.http
-        .post<boolean>(`${this.url}/user/updateUser`, user, {
+      user = await this.http
+        .patch<UserDto>(`${this.url}/user/renameUser`, user, {
           headers: this.authHeader,
         })
         .toPromise();
 
+      if (user !== undefined) {
+        this._username = user.name ? user.name : null;
+        this._houseId = user.houseId ? user.houseId : null;
+        return true;
+      } else return false;
     } catch (err: any) {
       if (err instanceof HttpErrorResponse) {
         console.log(err);

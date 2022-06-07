@@ -18,8 +18,14 @@ export class ChangeDeviceIdComponent implements OnInit {
 
   ngOnInit() {}
 
-  public login(deviceId: string) {
+  public async login(deviceId: string) {
     this._auth.deviceId = deviceId;
-    this._auth.login();
+    if (! (await this._auth.login()))
+      console.log("Login error!");
   }
+
+  public redirectToWelcome(){
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this._router.navigate(["welcome"]));
+ }
 }

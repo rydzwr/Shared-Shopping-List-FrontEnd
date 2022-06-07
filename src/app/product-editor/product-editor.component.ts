@@ -87,6 +87,11 @@ export class ProductEditorComponent implements OnInit {
       width: '80%',
       height: '80%',
     });
+
+    dialogRef.afterClosed().subscribe((reload) => {
+      if (reload)
+        this.fetchProductsList();
+    });
   }
 
   public addProductClicked() {
@@ -101,7 +106,6 @@ export class ProductEditorComponent implements OnInit {
         .subscribe((newProduct) =>
           this.dataSource.addProductOffline(newProduct)
         );
-        this.reloadCurrentPage();
     });
   }
 

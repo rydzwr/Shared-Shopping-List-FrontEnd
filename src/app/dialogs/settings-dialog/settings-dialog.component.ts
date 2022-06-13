@@ -14,7 +14,6 @@ export class SettingsDialogComponent implements OnInit {
   public status = '';
 
   constructor(
-    public dialogRef: MatDialogRef<SettingsDialogComponent>,
     private _auth: AuthorizationService,
     private _houseService: HouseService,
     private _router: Router
@@ -27,21 +26,20 @@ export class SettingsDialogComponent implements OnInit {
   public confirmClicked(username: string) {
     if (username !== '' && username !== undefined && username !== null) {
       this._auth.renameUser(username);
-      this.dialogRef.close(true);
+      this._router.navigate(['../welcome']);
     } else return;
   }
 
   public confirmHouseClicked(houseName: string) {
     if (houseName !== '' && houseName !== undefined && houseName !== null) {
       this._houseService.updateHouse(houseName);
-      this.dialogRef.close(true);
+      this._router.navigate(['../welcome']);
     } else return;
   }
 
   public async leaveHouseConfirmed() {
     this._houseService.removeUser().subscribe(() => {
         this._auth.login();
-        this.dialogRef.close(false);
         this._router.navigate(['../welcome']);
     });
   }
@@ -63,6 +61,6 @@ export class SettingsDialogComponent implements OnInit {
   }
 
   public onNoClick(): void {
-    this.dialogRef.close();
+    this._router.navigate(['../welcome']);
   }
 }

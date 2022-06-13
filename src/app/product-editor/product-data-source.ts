@@ -50,6 +50,7 @@ export class ProductDataSource {
   }
 
   public addProductOffline(product: ProductDto) {
+    console.log(this._auth.username);
     const tree = this.data;
     const username = this._auth.username;
 

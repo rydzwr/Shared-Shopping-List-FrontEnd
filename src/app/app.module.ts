@@ -38,7 +38,7 @@ import { SettingsDialogComponent } from './dialogs/settings-dialog/settings-dial
     FormsModule
   ],
   entryComponents: [],
-  providers: [ { provide: 'SERVER_URL', useValue: 'http://localhost:8080' }, AuthorizationService],
+  providers: [ { provide: 'SERVER_URL', useValue: 'https://sslist.rydzwr.com' }, AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

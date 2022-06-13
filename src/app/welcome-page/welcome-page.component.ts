@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HouseService } from 'src/app/Services/house.service';
 import { AuthorizationService } from '../Services/authorization.service';
 import { ServerService } from '../Services/server.service';
+
+declare var window: any;
+declare var device: any;
 
 @Component({
   selector: 'app-welcome-page',
@@ -23,12 +26,22 @@ export class WelcomePageComponent implements OnInit {
     private _serverService: ServerService
   ) {}
 
-  public async ngOnInit() {
+  public async login() {
     const loggedIn = await this._auth.login();
-    console.log("Welcome houseid: " + this._auth.houseId);
+    console.log('Welcome houseid: ' + this._auth.houseId);
     if (!loggedIn) this.status = 'newUser';
     else if (this._auth.houseId === null) this.status = 'selectAction';
     else this._router.navigate(['../home']);
+  }
+
+  ngOnInit(): void {
+    if (typeof window['cordova'] !== 'undefined') {
+      this._auth.deviceId = device.uuid;
+    } else {
+      this._auth.deviceId = "BrowserUser";
+    }
+
+    this.login();
   }
 
   public backClicked() {
@@ -36,7 +49,7 @@ export class WelcomePageComponent implements OnInit {
   }
 
   public async newUserClicked(username: string) {
-    if (username.trim() !== "") {
+    if (username.trim() !== '') {
       if (await this._auth.createUser(username)) this.status = 'selectAction';
     }
   }

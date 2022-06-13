@@ -12,7 +12,6 @@ export class AuthorizationService {
     private http: HttpClient,
     @Inject('SERVER_URL') private url: String
   ) {
-    //Get proper device ID
   }
 
   private _deviceId = 'TestDevice123';
@@ -33,7 +32,6 @@ export class AuthorizationService {
 
   public set deviceId(val: string) {
     this._deviceId = val;
-    console.log(val);
   }
 
   public get authHeader(): HttpHeaders {

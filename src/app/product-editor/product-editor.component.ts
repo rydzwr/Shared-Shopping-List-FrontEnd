@@ -12,6 +12,7 @@ import { InviteCodeDialogComponent } from '../dialogs/invite-code-dialog/invite-
 import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
 import { HouseService } from '../Services/house.service';
 import { SettingsDialogComponent } from '../dialogs/settings-dialog/settings-dialog.component';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-product-editor',
@@ -72,8 +73,8 @@ export class ProductEditorComponent implements OnInit {
 
       this.dialog.open(InviteCodeDialogComponent, {
         width: '80%',
-        height: '80%',
         data: inviteCode,
+        scrollStrategy: new NoopScrollStrategy(),
       });
     } catch (err: any) {
       if (err instanceof HttpErrorResponse) {
@@ -83,29 +84,23 @@ export class ProductEditorComponent implements OnInit {
   }
 
   public settingsClicked() {
-    const dialogRef = this.dialog.open(SettingsDialogComponent, {
-      width: '80%',
-      height: '80%',
-    });
-
-    dialogRef.afterClosed().subscribe((reload) => {
-      if (reload)
-        this.fetchProductsList();
-    });
+    this._router.navigate(['../settings']);
   }
 
   public addProductClicked() {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
       width: '80%',
-      height: '80%',
+      scrollStrategy: new NoopScrollStrategy(),
     });
 
-    dialogRef.afterClosed().subscribe((productName) => {
-      this._productService
-        .addProduct(productName)
-        .subscribe((newProduct) =>
-          this.dataSource.addProductOffline(newProduct)
-        );
+    dialogRef.afterClosed().subscribe((productName: string) => {
+      if (productName && productName.trim() !== '') {
+        this._productService
+          .addProduct(productName)
+          .subscribe((newProduct) =>
+            this.dataSource.addProductOffline(newProduct)
+          );
+      }
     });
   }
 
@@ -114,7 +109,9 @@ export class ProductEditorComponent implements OnInit {
   }
 
   removeUserBoughtProductsClicked() {
-    this._houseService.clearUserProducts().subscribe(() => this.fetchProductsList());
+    this._houseService
+      .clearUserProducts()
+      .subscribe(() => this.fetchProductsList());
   }
 
   public fetchProductsList() {
@@ -123,5 +120,5 @@ export class ProductEditorComponent implements OnInit {
 
   reloadCurrentPage() {
     window.location.reload();
-   }
+  }
 }

@@ -13,7 +13,7 @@ export class ChangeDeviceIdComponent implements OnInit {
     public _router: Router,
     @Inject('SERVER_URL') public url: String
   ) {
-    this.login('TestDevice123');
+    //this.login('TestDevice123');
   }
 
   ngOnInit() {}

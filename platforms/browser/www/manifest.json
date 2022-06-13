@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "SharedShoppingList",
+  "short_name": "SharedShoppingList",
+  "version": "com.rydzwr.sharedShoppingList",
+  "description": "Sample Apache Cordova App",
+  "author": "Apache Cordova Team",
+  "icons": [],
+  "start_url": "index.html"
+}

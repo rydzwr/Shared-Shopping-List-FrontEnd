@@ -1,2 +1,4 @@
 <router-outlet></router-outlet>
-<app-change-device-id></app-change-device-id>
+<ng-container *ngIf="!env.production">
+  <app-change-device-id></app-change-device-id>
+</ng-container>

@@ -11,7 +11,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { InviteCodeDialogComponent } from '../dialogs/invite-code-dialog/invite-code-dialog.component';
 import { AddProductDialogComponent } from '../dialogs/add-product-dialog/add-product-dialog.component';
 import { HouseService } from '../Services/house.service';
-import { SettingsDialogComponent } from '../dialogs/settings-dialog/settings-dialog.component';
+import { SettingsDialogComponent } from '../settings/settings.component';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
@@ -89,7 +89,8 @@ export class ProductEditorComponent implements OnInit {
 
   public addProductClicked() {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
-      width: '80%',
+      width: '70%',
+      height: '50%',
       scrollStrategy: new NoopScrollStrategy(),
     });
 

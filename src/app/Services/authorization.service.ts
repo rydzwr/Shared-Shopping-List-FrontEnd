@@ -14,7 +14,7 @@ export class AuthorizationService {
   ) {
   }
 
-  private _deviceId = 'TestDevice123';
+  private _deviceId = 'BrowserUser';
   private _username: string | null = null;
   private _houseId: number | null = null;
 

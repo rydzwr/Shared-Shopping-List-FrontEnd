@@ -1,0 +1,33 @@
+<div class="content">
+  <div class="content" *ngIf="status === 'selectAction'">
+    <button (click)="changeNameClicked()">Change Name</button>
+    <button (click)="changeHouseNameClicked()">Change House Name</button>
+    <button (click)="leaveHouseClicked()">Leave House</button>
+  </div>
+
+  <div class="content" *ngIf="status === 'changeName'">
+    <div class="inputBox">
+      <input type="text" id="newName" name="newName" #newName>
+      <span>Enter Name</span>
+    </div>
+    <button (click)="confirmClicked(newName.value)">OK</button>
+    <button (click)="cancelClicked()">Cancel</button>
+  </div>
+
+  <div class="content" *ngIf="status === 'changeHouseName'">
+    <div class="inputBox">
+      <input type="text" id="newHouseName" name="newHouseName" #newHouseName>
+      <span>Enter Name</span>
+    </div>
+    <button (click)="confirmHouseClicked(newHouseName.value)">OK</button>
+    <button (click)="cancelClicked()">Cancel</button>
+  </div>
+
+  <div class="content" *ngIf="status === 'leaveHouse'">
+    <div class="text"><p>Are You Sure?</p></div>
+    <button (click)="leaveHouseConfirmed()">YES</button>
+    <button (click)="cancelClicked()">NO</button>
+  </div>
+
+  <button class="back-button" (click)="onNoClick()">Close</button>
+</div>

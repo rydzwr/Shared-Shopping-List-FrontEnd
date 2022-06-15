@@ -7,8 +7,8 @@ import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
   selector: 'app-settings-dialog',
-  templateUrl: './settings-dialog.component.html',
-  styleUrls: ['./settings-dialog.component.css'],
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.css'],
 })
 export class SettingsDialogComponent implements OnInit {
   public status = '';

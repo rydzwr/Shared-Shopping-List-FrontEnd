@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SettingsDialogComponent } from './settings-dialog.component';
+import { SettingsDialogComponent } from './settings.component';
 
 describe('SettingsDialogComponent', () => {
   let component: SettingsDialogComponent;

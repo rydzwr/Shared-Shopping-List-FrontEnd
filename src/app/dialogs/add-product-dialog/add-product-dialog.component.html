@@ -1,8 +1,10 @@
 <div class="content">
-  <h1>Enter Product Name</h1>
-  <input class="input" type="text" id="product" name="product" #product />
-  <button class="button" mat-button (click)="okClicked(product.value)" cdkFocusInitial>
+  <div class="inputBox">
+    <input class="input" type="text" id="product" name="product" #product />
+    <span>Product Name</span>
+  </div>
+  <button mat-button (click)="okClicked(product.value)" cdkFocusInitial>
     OK
   </button>
-  <button class="close" (click)="onNoClick()">Close</button>
+  <button (click)="onNoClick()">Close</button>
 </div>

@@ -72,4 +72,16 @@ button
   border-radius: 5px !important;
 }
 
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 40px;
+	font-size: 1em;
+  letter-spacing: 0.2em;
+  border: 1px solid #00dfc4;
+  border-radius: 5px;
+}
+
 

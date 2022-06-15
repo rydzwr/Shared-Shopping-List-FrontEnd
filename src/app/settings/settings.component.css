@@ -6,17 +6,11 @@
 	min-height: 100vh;
 	background: #1d2b3a;
   gap: 30px;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .inputBox {
   position: relative;
-}
-
-p {
-  font-size: 1em;
-  letter-spacing: 0.2em;
-  color: rgb(214, 214, 214);
 }
 
 .back-button {

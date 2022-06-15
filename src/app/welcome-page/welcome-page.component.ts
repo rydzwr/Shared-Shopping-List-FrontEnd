@@ -5,9 +5,6 @@ import { HouseService } from 'src/app/Services/house.service';
 import { AuthorizationService } from '../Services/authorization.service';
 import { ServerService } from '../Services/server.service';
 
-declare var window: any;
-declare var device: any;
-
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
@@ -28,19 +25,14 @@ export class WelcomePageComponent implements OnInit {
 
   public async login() {
     const loggedIn = await this._auth.login();
-    console.log('Welcome houseid: ' + this._auth.houseId);
+    console.log('Welcome houseid: ' + this._auth.userAuth.houseId);
+
     if (!loggedIn) this.status = 'newUser';
-    else if (this._auth.houseId === null) this.status = 'selectAction';
+    else if (this._auth.userAuth.houseId === null) this.status = 'selectAction';
     else this._router.navigate(['../home']);
   }
 
   ngOnInit(): void {
-    if (typeof window['cordova'] !== 'undefined') {
-      this._auth.deviceId = device.uuid;
-    } else {
-      this._auth.deviceId = "BrowserUser";
-    }
-
     this.login();
   }
 

@@ -13,7 +13,6 @@
   <button (click)="status = 'joinHouse'">Join</button>
   <div class="text"><p>Create New Household</p></div>
   <button (click)="status = 'createHouseChoose'">Create</button>
-  <button class="back-button" (click)="backClicked()">BACK</button>
 </div>
 
 <div class="content" *ngIf="status === 'createHouseChoose'">
@@ -22,8 +21,8 @@
     <input type="text" id="housename" name="housename" #housename />
     <span>House Name</span>
   </div>
-  <button (click)="newHouseClicked(housename.value)">OK</button>
-  <button class="back-button" (click)="backToSelectActionClicked()">
+  <button class="common" (click)="newHouseClicked(housename.value)">OK</button>
+  <button class="common back-button" (click)="backToSelectActionClicked()">
     BACK
   </button>
 </div>
@@ -33,8 +32,8 @@
     <input type="text" id="invite" name="invite" #invite />
     <span>Invite Code</span>
   </div>
-  <button type="button" (click)="joinClicked(invite.value)">Continue</button>
-  <button class="back-button" (click)="backToSelectActionClicked()">
+  <button class="common" type="button" (click)="joinClicked(invite.value)">Continue</button>
+  <button class="common back-button" (click)="backToSelectActionClicked()">
     BACK
   </button>
 

@@ -4,11 +4,8 @@
     type="text"
     id="deviceId"
     name="deviceId"
-    [value]="_auth.deviceId"
+    [value]="(_auth.userAuthObservable | async)!.deviceId"
     #deviceId
   />
-  <button class="button" type="button" (click)="login(deviceId.value)">OK</button>
-  <button class="button" type="button" (click)="redirectToWelcome()">
-    Start
-  </button>
+  <button class="button" type="button" (click)="changeDevice(deviceId.value)">OK</button>
 </div>

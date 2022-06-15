@@ -4,53 +4,123 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDto } from '../model/userDto';
 
+declare var window: any;
+declare var device: any;
+
+export interface UserAuthInfo {
+  deviceId: string;
+  username: string;
+  houseId?: number;
+}
+
 @Injectable()
-export class AuthorizationService {
+export class AuthorizationService implements CanActivate {
+  private _endpoint = '/users';
+  private _appRoute = '/home';
+  private _loginRoute = '/welcome';
+
+  private _deviceId: string = 'BrowserUser';
+  private _loggedIn: boolean = false;
+  private _redirectUrl?: string;
+
+  private _defaultAuth: UserAuthInfo = {
+    deviceId: this._deviceId,
+    username: '',
+    houseId: undefined,
+  };
+
+  private _userAuthSubject = new BehaviorSubject<UserAuthInfo>(
+    this._defaultAuth
+  );
+
   constructor(
-    private http: HttpClient,
-    @Inject('SERVER_URL') private url: String
+    private _http: HttpClient,
+    private _router: Router,
+    @Inject('SERVER_URL') private _url: String
   ) {
+    if (typeof window['cordova'] !== 'undefined') {
+      this._deviceId = device.uuid;
+    }
+    console.log("Auth service created, deviceId: " + this._deviceId)
   }
 
-  private _deviceId = 'BrowserUser';
-  private _username: string | null = null;
-  private _houseId: number | null = null;
-
-  public get deviceId() {
-    return this._deviceId;
+  public get loggedIn(): boolean {
+    return this._loggedIn;
   }
 
-  public get username() {
-    return this._username;
+  public get userAuth(): UserAuthInfo {
+    return this._userAuthSubject.getValue();
   }
 
-  public get houseId() {
-    return this._houseId;
+  public get redirectUrl(): string {
+    return this._redirectUrl ? this._redirectUrl : this._appRoute;
   }
 
-  public set deviceId(val: string) {
-    this._deviceId = val;
+  public get userAuthObservable(): Observable<UserAuthInfo> {
+    return this._userAuthSubject.asObservable();
   }
 
   public get authHeader(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: `Basic ${btoa(this._deviceId)}`,
+      Authorization: `Basic ${btoa(this._userAuthSubject.getValue().deviceId)}`,
     });
+  }
+
+  public forceSetDeviceId(val: string): Promise<boolean> {
+    this._deviceId = val;
+    return this.login();
+  }
+
+  public canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    return this.checkLogin(state.url);
+  }
+
+  private checkLogin(url: string): boolean {
+    if (this._loggedIn) {
+      return true;
+    }
+
+    this._redirectUrl = url;
+    this._router.navigateByUrl(this._loginRoute);
+
+    return false;
+  }
+
+  public logout() {
+    this._loggedIn = false;
+    this._userAuthSubject.next(this._defaultAuth);
   }
 
   public async login(): Promise<boolean> {
     try {
-      const user = await this.http
-        .get<UserDto>(`${this.url}/user/login`, {
+      const user = await this._http
+        .get<UserDto>(`${this._url}/user/login`, {
           headers: this.authHeader,
         })
         .toPromise();
 
-      if (user !== undefined) {
-        this._username = user.name ? user.name : null;
-        this._houseId = user.houseId ? user.houseId : null;
+      if (user !== undefined && user.name) {
+        this._loggedIn = true;
+
+        this._userAuthSubject.next({
+          deviceId: this._deviceId,
+          username: user.name,
+          houseId: user.houseId,
+        });
+
         return true;
       } else return false;
     } catch (err: any) {
@@ -66,15 +136,21 @@ export class AuthorizationService {
     let user: UserDto | undefined = { name: username };
 
     try {
-      user = await this.http
-        .post<UserDto>(`${this.url}/user/createUser`, user, {
+      user = await this._http
+        .post<UserDto>(`${this._url}/user/createUser`, user, {
           headers: this.authHeader,
         })
         .toPromise();
 
-      if (user !== undefined) {
-        this._username = user.name ? user.name : null;
-        this._houseId = user.houseId ? user.houseId : null;
+      if (user !== undefined && user.name) {
+        this._loggedIn = true;
+
+        this._userAuthSubject.next({
+          deviceId: this._deviceId,
+          username: user.name,
+          houseId: user.houseId,
+        });
+
         return true;
       } else return false;
     } catch (err: any) {
@@ -89,15 +165,20 @@ export class AuthorizationService {
   public async renameUser(userName: string): Promise<boolean> {
     let user: UserDto | undefined = { name: userName };
     try {
-      user = await this.http
-        .patch<UserDto>(`${this.url}/user/renameUser`, user, {
+      user = await this._http
+        .patch<UserDto>(`${this._url}/user/renameUser`, user, {
           headers: this.authHeader,
         })
         .toPromise();
 
-      if (user !== undefined) {
-        this._username = user.name ? user.name : null;
-        this._houseId = user.houseId ? user.houseId : null;
+      if (user !== undefined && user.name) {
+        this._loggedIn = true;
+
+        this._userAuthSubject.next({
+          deviceId: this._deviceId,
+          username: user.name,
+          houseId: user.houseId,
+        });
         return true;
       } else return false;
     } catch (err: any) {

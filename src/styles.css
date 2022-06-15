@@ -62,7 +62,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /*-------------------BUTTON-------------------*/
 
-button
+button.common
 {
   width: 150px;
   height: 40px;
@@ -71,6 +71,8 @@ button
   background: #00dfc4;
   border-radius: 5px !important;
 }
+
+
 
 .text {
   display: flex;

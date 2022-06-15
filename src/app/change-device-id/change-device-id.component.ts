@@ -7,25 +7,17 @@ import { AuthorizationService } from '../Services/authorization.service';
   templateUrl: './change-device-id.component.html',
   styleUrls: ['./change-device-id.component.css'],
 })
-export class ChangeDeviceIdComponent implements OnInit {
+export class ChangeDeviceIdComponent {
   constructor(
     public _auth: AuthorizationService,
     public _router: Router,
     @Inject('SERVER_URL') public url: String
   ) {
-    //this.login('TestDevice123');
   }
 
-  ngOnInit() {}
-
-  public async login(deviceId: string) {
-    this._auth.deviceId = deviceId;
-    if (! (await this._auth.login()))
-      console.log("Login error!");
+  public async changeDevice(deviceId: string) {
+    if (!(await this._auth.forceSetDeviceId(deviceId)))
+      console.log("Change deviceId component: Login error!");
+    this._router.navigateByUrl('/welcome');
   }
-
-  public redirectToWelcome(){
-    this._router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this._router.navigate(["welcome"]));
- }
 }

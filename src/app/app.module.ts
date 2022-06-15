@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductEditorComponent } from './product-editor/product-editor.component';
 import { IonicModule } from '@ionic/angular';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -25,7 +25,7 @@ import { SettingsDialogComponent } from './settings/settings.component';
     ChangeDeviceIdComponent,
     AddProductDialogComponent,
     InviteCodeDialogComponent,
-    SettingsDialogComponent
+    SettingsDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -35,10 +35,23 @@ import { SettingsDialogComponent } from './settings/settings.component';
     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   entryComponents: [],
-  providers: [ { provide: 'SERVER_URL', useValue: 'https://sslist.rydzwr.com' }, AuthorizationService],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: 'SERVER_URL', useValue: 'http://localhost:5000' },
+    AuthorizationService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: AppModule
+  ) {
+    if (parentModule) {
+      throw new Error('AppModule is already loaded. Import only in AppModule');
+    }
+  }
+}

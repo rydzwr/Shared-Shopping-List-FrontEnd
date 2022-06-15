@@ -50,9 +50,9 @@ export class ProductDataSource {
   }
 
   public addProductOffline(product: ProductDto) {
-    console.log(this._auth.username);
+    console.log(this._auth.userAuth.username);
     const tree = this.data;
-    const username = this._auth.username;
+    const username = this._auth.userAuth.username;
 
     if (username && username in tree.productsByUser) {
       (tree.productsByUser[username] as ProductDto[]).unshift(product);

@@ -18,7 +18,7 @@ export class HouseService {
 
   public createHouse(housename: string): Observable<HouseDto> {
     let house: HouseDto | undefined = { name: housename };
-
+    console.log("Creating house with deviceID: " + this._auth.userAuth.deviceId);
     return this.http.post<HouseDto>(`${this.url}/house`, house, {
       headers: this._auth.authHeader,
     });

@@ -72,7 +72,7 @@ export class ProductEditorComponent implements OnInit {
       ).inviteCode;
 
       this.dialog.open(InviteCodeDialogComponent, {
-        width: '80%',
+        width: '95%',
         data: inviteCode,
         scrollStrategy: new NoopScrollStrategy(),
       });
@@ -89,8 +89,7 @@ export class ProductEditorComponent implements OnInit {
 
   public addProductClicked() {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
-      width: '70%',
-      height: '50%',
+      width: '95%',
       scrollStrategy: new NoopScrollStrategy(),
     });
 

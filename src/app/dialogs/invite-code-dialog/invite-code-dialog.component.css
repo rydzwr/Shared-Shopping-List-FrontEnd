@@ -2,27 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
+  justify-content: center;
   width: 100%;
-  background-color: #ffffff;
+  height: 100%;
+  gap: 20px;
+  padding-top: 10px;
+  background: #1d2b3a;
+  border: solid 2px black;
 }
 
-p {
-  background: none;
-  text-shadow: 0 5px 8px rgba(0, 0, 0, 0.8);
-  color: rgb(211, 211, 211);
-}
-
-h1 {
-  background: none;
-  color: rgb(211, 211, 211);
-}
-
-.close {
+.text-code {
   width: 100px;
-  height: 30px;
-  background-color: rgb(86, 33, 136);
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-  position: absolute;
-  bottom: 20%
 }
+
+h1, p {
+  color: rgb(211, 211, 211);
+}
+
+
+

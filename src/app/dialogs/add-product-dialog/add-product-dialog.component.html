@@ -3,8 +3,8 @@
     <input class="input" type="text" id="product" name="product" #product />
     <span>Product Name</span>
   </div>
-  <button mat-button (click)="okClicked(product.value)" cdkFocusInitial>
+  <button class="common-button" mat-button (click)="okClicked(product.value)" cdkFocusInitial>
     OK
   </button>
-  <button (click)="onNoClick()">Close</button>
+  <button class="common-button close-button" (click)="onNoClick()">Close</button>
 </div>

@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HouseService } from 'src/app/Services/house.service';
 import { AuthorizationService } from '../Services/authorization.service';
-import { ServerService } from '../Services/server.service';
 
 @Component({
   selector: 'app-welcome-page',
@@ -19,8 +18,7 @@ export class WelcomePageComponent implements OnInit {
     private http: HttpClient,
     private _auth: AuthorizationService,
     private _router: Router,
-    private _houseService: HouseService,
-    private _serverService: ServerService
+    private _houseService: HouseService
   ) {}
 
   public async login() {
@@ -51,9 +49,11 @@ export class WelcomePageComponent implements OnInit {
   }
 
   public newHouseClicked(housename: string) {
-    this._houseService
-      .createHouse(housename)
-      .subscribe((newHouse) => this._router.navigate(['../home']));
+    if (housename.trim() !== '') {
+      this._houseService
+        .createHouse(housename)
+        .subscribe((newHouse) => this._router.navigate(['../home']));
+    }
   }
 
   public async joinClicked(inviteCode: string) {

@@ -62,7 +62,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /*-------------------BUTTON-------------------*/
 
-button.common
+.common-button
 {
   width: 150px;
   height: 40px;
@@ -84,6 +84,10 @@ button.common
   letter-spacing: 0.2em;
   border: 1px solid #00dfc4;
   border-radius: 5px;
+}
+
+.mat-dialog-container {
+  background: #1d2b3a;
 }
 
 

@@ -39,7 +39,7 @@ import { SettingsDialogComponent } from './settings/settings.component';
   ],
   entryComponents: [],
   providers: [
-    { provide: 'SERVER_URL', useValue: 'http://localhost:5000' },
+    { provide: 'SERVER_URL', useValue: 'https://sslist.rydzwr.com' },
     AuthorizationService,
   ],
   bootstrap: [AppComponent],

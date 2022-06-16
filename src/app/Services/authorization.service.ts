@@ -50,6 +50,11 @@ export class AuthorizationService implements CanActivate {
   ) {
     if (typeof window['cordova'] !== 'undefined') {
       this._deviceId = device.uuid;
+      this._userAuthSubject.next({
+        deviceId: this._deviceId,
+        username: this._defaultAuth.username,
+        houseId: this._defaultAuth.houseId,
+      });
     }
     console.log("Auth service created, deviceId: " + this._deviceId)
   }
@@ -72,7 +77,7 @@ export class AuthorizationService implements CanActivate {
 
   public get authHeader(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: `Basic ${btoa(this._userAuthSubject.getValue().deviceId)}`,
+      Authorization: `Basic ${btoa(this._deviceId)}`,
     });
   }
 
@@ -133,6 +138,7 @@ export class AuthorizationService implements CanActivate {
   }
 
   public async createUser(username: string): Promise<boolean> {
+    console.log("Creating user with deviceID: " + this._userAuthSubject.getValue().deviceId);
     let user: UserDto | undefined = { name: username };
 
     try {

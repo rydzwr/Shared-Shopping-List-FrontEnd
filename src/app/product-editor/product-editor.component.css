@@ -82,6 +82,16 @@ h1 {
   font-size: 1.5rem;
 }
 
+.user-panel-button {
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  background: none;
+  border: 1px solid #00dfc4;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
 /*-------------------USER'S PRODUCTS LIST-------------------*/
 
 .user-products-list {
@@ -119,6 +129,7 @@ h1 {
   min-width: 100%;
   margin-top: 5px;
   border-bottom: 0.2px solid rgb(49, 49, 49);
+  background: none;
 }
 
 .product-name {
